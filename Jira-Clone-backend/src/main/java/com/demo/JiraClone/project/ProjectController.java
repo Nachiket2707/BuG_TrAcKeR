@@ -52,13 +52,16 @@ public class ProjectController {
     }
 
     @GetMapping
-    public List<Project> myProjects(
+    public List<ProjectResponse> myProjects(
             @AuthenticationPrincipal UserDetails userDetails
     ) {
         User user = userRepository
                 .findByEmail(userDetails.getUsername())
                 .orElseThrow();
 
-        return projectService.getProjectsForUser(user);
+        return projectService.getProjectsForUser(user)
+                .stream()
+                .map(projectService::toResponse)
+                .toList();
     }
 }

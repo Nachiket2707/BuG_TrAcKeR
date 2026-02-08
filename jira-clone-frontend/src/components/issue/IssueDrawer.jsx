@@ -116,7 +116,7 @@ function IssueDrawer() {
   }
 
   return (
-    <div className="fixed top-0 right-0 h-full w-[400px] bg-white shadow-xl p-6 z-50 transition-transform duration-300 translate-x-0">
+    <div className="fixed top-0 right-0 h-full w-[400px] bg-white shadow-xl p-6 z-50 transition-transform duration-300 translate-x-0 overflow-y-auto">
       <button
         onClick={() => setSelectedIssue(null)}
         className="text-gray-500 hover:text-black"

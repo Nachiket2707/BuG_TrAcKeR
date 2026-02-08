@@ -30,10 +30,10 @@ export function ProjectProvider({ children }) {
     }
   }, []);
 
-  async function loadIssues(projectId) {
+  const loadIssues = useCallback(async (projectId) => {
     const data = await getIssuesByProject(projectId);
     setIssues(data);
-  }
+  }, []);
 
   async function updateIssueById(issue) {
     const saved = await updateIssueStatus(issue.id, issue.status);

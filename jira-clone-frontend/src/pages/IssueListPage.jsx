@@ -14,15 +14,8 @@ function IssueListPage() {
     }
   }, [currentProject, loadIssues]);
 
-  if (!currentProject) {
-    return (
-      <div className="text-gray-500">
-        Select a project to view issues
-      </div>
-    );
-  }
-
   const filtered = useMemo(() => {
+    if (!currentProject) return [];
     const q = query.trim().toLowerCase();
     return issues.filter((i) => {
       const matchesQuery =
@@ -36,7 +29,15 @@ function IssueListPage() {
       const matchesPriority = priority === "ALL" || i.priority === priority;
       return matchesQuery && matchesStatus && matchesPriority;
     });
-  }, [issues, query, status, priority]);
+  }, [issues, query, status, priority, currentProject]);
+
+  if (!currentProject) {
+    return (
+      <div className="text-gray-500">
+        Select a project to view issues
+      </div>
+    );
+  }
 
   return (
     <div>

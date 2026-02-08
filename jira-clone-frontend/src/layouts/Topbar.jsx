@@ -32,6 +32,17 @@ function Topbar() {
       </NavLink>
 
       <NavLink
+        to="/projects"
+        className={({ isActive }) =>
+          isActive
+            ? "font-semibold text-black"
+            : "text-gray-500 hover:text-black"
+        }
+      >
+        Projects
+      </NavLink>
+
+      <NavLink
         to="/board"
         className={({ isActive }) =>
           isActive

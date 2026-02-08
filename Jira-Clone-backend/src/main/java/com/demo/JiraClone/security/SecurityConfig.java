@@ -31,11 +31,13 @@ public class SecurityConfig {
 
         http
                 .csrf(csrf -> csrf.disable())
+                .cors(cors -> {})
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                                 .requestMatchers(
                                         "/api/auth/**",
+                                        "/error",
                                         "/v3/api-docs/**",
                                         "/swagger-ui/**",
                                         "/swagger-ui.html"
@@ -59,5 +61,4 @@ public class SecurityConfig {
         return config.getAuthenticationManager();
     }
 }
-
 

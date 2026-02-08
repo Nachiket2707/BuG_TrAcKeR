@@ -70,6 +70,9 @@ public class IssueService {
         Project project = projectRepository.findById(projectId)
                 .orElseThrow(() -> new ResourceNotFoundException("Project not found"));
 
+        if (priority == null) {
+            return issueRepository.findByProject(project);
+        }
         return issueRepository.findByProjectAndPriority(project, priority);
     }
 
